@@ -1,25 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Measurements</title>
-</head>
-<body>
-    <a href="/">Home</a>
-    <br>
-    {% if data %}
-    <table>
-        <tr>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <style>
+      .table,
+      a {
+        color: white;
+      }
+      .container a {
+        text-decoration: none;
+      }
+      a:hover {
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="bg-dark">
+    <div class="container">
+      <a href="/">Home</a>
+      <br />
+
+      <div class="table mt-5">
+        {% if data %}
+        <table>
+          <tr>
             <th>Pollutant</th>
             <th>Amount</th>
-        </tr>
-        {% for key, value in data.items %}
-        <tr>
-            <td>{{key}}</td>
-            <td>{{value}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
-</body>
+          </tr>
+          {% for key, value in data.items %}
+          <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        {% endif %}
+      </div>
+    </div>
+  </body>
 </html>
