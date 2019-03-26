@@ -1,0 +1,41 @@
+<form method="post" id='locationForm' city_data_url="{% url 'aqi:ajax_load_cities' %}"
+      location_data_url="{% url 'aqi:ajax_load_locations' %}"
+      action="{% url 'aqi:measurements' %}" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="submit">
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+      $("#id_country").change(function () {
+    var url = $("#locationForm").attr("city_data_url");
+    var countryId = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'country': countryId
+      },
+      success: function (data) {
+        $("#id_city").html(data);
+      }
+    });
+  });
+
+  $("#id_city").change(function () {
+    var url = $("#locationForm").attr("location_data_url");
+    var cityId = $(this).val();
+    $.ajax({
+      url: url,
+      data: {
+        'city': cityId
+      },
+      success: function (data) {
+        $("#id_station").html(data);
+      }
+    });
+  });
+
+
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Measurements</title>
+</head>
+<body>
+    <a href="/">Home</a>
+    <br>
+    {% if data %}
+    <table>
+        <tr>
+            <th>Pollutant</th>
+            <th>Amount</th>
+        </tr>
+        {% for key, value in data.items %}
+        <tr>
+            <td>{{key}}</td>
+            <td>{{value}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>
