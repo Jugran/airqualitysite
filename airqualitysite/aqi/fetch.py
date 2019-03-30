@@ -11,7 +11,7 @@ def get_data(query, param='', limit=10000):
     response = urlopen(url)
     assert response.code == 200, 'Response code %d' % response.code
 
-    json_data = json.loads(response.read().decode('utf8'))
+    json_data = json.loads(response.read())
 
     if query == 'latest':
         data = {}
