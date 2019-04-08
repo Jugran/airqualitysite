@@ -4,11 +4,19 @@ from django.views.generic import CreateView
 
 from . import forms
 from .fetch import get_data
-from .models import Location, City, Station
+from .models import Location, City, Station, Country
 from .populate import populate_stations
 
 
+from rest_framework import generics
+from .serializers import Serializer
+
 # Create your views here.
+
+
+class ListCreate(generics.ListCreateAPIView):
+    queryset = Country.objects.all()
+    serializer_class = Serializer
 
 
 class LocationForm(CreateView):
