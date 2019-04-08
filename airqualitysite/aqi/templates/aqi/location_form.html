@@ -1,72 +1,41 @@
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-  crossorigin="anonymous"
-/>
-<style>
-  #form1 {
-    color: blue;
-  }
-  .form12 {
-    text-decoration: none;
-    list-style: none;
-    color: white;
-  }
-  .Myclass {
-    color: black;
-  }
-  .btn:hover {
-    background-color: white;
-    color: black;
-  }
-</style>
-
-<div class="container-fluid h-100 bg-dark">
-  <form
-    method="post"
-    id="locationForm"
-    city_data_url="{% url 'aqi:ajax_load_cities' %}"
-    location_data_url="{% url 'aqi:ajax_load_locations' %}"
-    action="{% url 'aqi:measurements' %}"
-    novalidate
-  >
+<form method="post" id='locationForm' city_data_url="{% url 'aqi:ajax_load_cities' %}"
+      location_data_url="{% url 'aqi:ajax_load_locations' %}"
+      action="{% url 'aqi:measurements' %}" novalidate>
     {% csrf_token %}
-    <div class="form12">
-      {{ form.as_table }}
-    </div>
-    <input class="btn btn-default" type="submit" value="Sumit" />
-  </form>
-</div>
+    {{ form.as_p }}
+    <input type="submit" value="submit">
+</form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-  $("#id_country").change(function() {
+      $("#id_country").change(function () {
     var url = $("#locationForm").attr("city_data_url");
     var countryId = $(this).val();
 
     $.ajax({
       url: url,
       data: {
-        country: countryId
+        'country': countryId
       },
-      success: function(data) {
+      success: function (data) {
         $("#id_city").html(data);
       }
     });
   });
 
-  $("#id_city").change(function() {
+  $("#id_city").change(function () {
     var url = $("#locationForm").attr("location_data_url");
     var cityId = $(this).val();
     $.ajax({
       url: url,
       data: {
-        city: cityId
+        'city': cityId
       },
-      success: function(data) {
+      success: function (data) {
         $("#id_station").html(data);
       }
     });
   });
+
+
 </script>
